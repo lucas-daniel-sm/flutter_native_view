@@ -30,20 +30,20 @@ class NativeViewContainer {
   // Creates a new |NativeViewContainer| to hold various native views.
   // Transitions on this window are disabled using
   // |DWMWA_TRANSITIONS_FORCEDISABLED|.
-  DLLEXPORT HWND NativeViewContainer::Create();
+  DLLEXPORT HWND Create();
 
   // Returns the |NativeViewContainer|'s window handle for the given parent
   // |window|. The method also removes the taskbar entry of |handle_| & returns
   // focus back to |window| (if lost).
   // |window| is stored on |NativeViewContainer|'s window as |GWLP_USERDATA|.
-  DLLEXPORT HWND NativeViewContainer::Get(HWND window);
+  DLLEXPORT HWND Get(HWND window);
 
  private:
-  static std::unique_ptr<NativeViewContainer> NativeViewContainer::instance_;
+  static std::unique_ptr<NativeViewContainer> instance_;
   static constexpr auto kClassName = L"FLUTTER_NATIVE_VIEW";
   static constexpr auto kWindowName = L"flutter_native_view";
 
-  static LRESULT CALLBACK NativeViewContainer::WindowProc(
+  static LRESULT CALLBACK WindowProc(
       HWND const window, UINT const message, WPARAM const wparam,
       LPARAM const lparam) noexcept;
 
